@@ -1,0 +1,37 @@
+$ curl -s localhost:8000/health
+{"status":"ok","index_loaded":true,"chunks":51,"embedding":"local-hashing-v1:8192","generator":"extractive"}
+
+$ curl -s -X POST localhost:8000/query -H "Content-Type: application/json" -d '{"question": "What is the per person limit for medical payments to others?", "top_k": 3}'
+{
+    "question": "What is the per person limit for medical payments to others?",
+    "answer": "We pay necessary medical expenses incurred within three years from the date of an accident causing bodily injury to others. [ho-liability#coverage-f-medical-payments-to-others-0] Coverage F applies regardless of fault, up to 5,000 dollars per person. [ho-liability#coverage-f-medical-payments-to-others-0] Our duty to defend ends when the limit of liability has been exhausted by payment of judgments or settlements. [ho-liability#coverage-e-personal-liability-0]",
+    "refused": false,
+    "max_similarity": 0.224,
+    "citations": [
+        "ho-liability#coverage-f-medical-payments-to-others-0",
+        "ho-liability#coverage-e-personal-liability-0"
+    ],
+    "sources": [
+        {
+            "chunk_id": "ho-liability#coverage-f-medical-payments-to-others-0",
+            "doc_id": "ho-liability",
+            "doc_type": "policy_wording",
+            "section": "Section II - Liability Coverages > Coverage F - Medical Payments to Others",
+            "score": 0.3555
+        },
+        {
+            "chunk_id": "ho-liability#coverage-e-personal-liability-0",
+            "doc_id": "ho-liability",
+            "doc_type": "policy_wording",
+            "section": "Section II - Liability Coverages > Coverage E - Personal Liability",
+            "score": 0.179
+        },
+        {
+            "chunk_id": "ho-property-coverages#coverage-b-other-structures-0",
+            "doc_id": "ho-property-coverages",
+            "doc_type": "policy_wording",
+            "section": "Section I - Property Coverages > Coverage B - Other Structures",
+            "score": 0.1287
+        }
+    ]
+}

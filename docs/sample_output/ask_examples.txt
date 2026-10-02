@@ -1,0 +1,30 @@
+$ python -m rag_pipeline.cli ask "What windstorm deductible is required for risks near tidal water?" 
+Risks within 1,000 feet of tidal water require a minimum 2 percent windstorm deductible. [uw-homeowners-guideline#coastal-and-wildfire-zones-0]
+
+refused=False max_similarity=0.286
+  0.393  uw-homeowners-guideline#coastal-and-wildfire-zones-0  (Homeowners Underwriting Guideline > Coastal and Wildfire Zones)
+  0.198  ho-perils-exclusions#exclusion-flood-0  (Perils Insured Against and Exclusions > Exclusion - Flood)
+  0.165  ho-conditions#deductible-0  (Section I - Conditions > Deductible)
+  0.151  uw-homeowners-guideline#prior-loss-history-0  (Homeowners Underwriting Guideline > Prior Loss History)
+  0.113  ho-perils-exclusions#perils-insured-against-dwelling-0  (Perils Insured Against and Exclusions > Perils Insured Against - Dwelling)
+
+$ python -m rag_pipeline.cli ask "When must mold be referred to an industrial hygienist?" --doc-type claims_sop
+Refer to an industrial hygienist when visible mold exceeds 10 square feet. [claims-water-damage-sop#mold-handling-0]
+
+refused=False max_similarity=0.266
+  0.387  claims-water-damage-sop#mold-handling-0  (Claims SOP - Water Damage Claims > Mold Handling)
+  0.073  claims-water-damage-sop#emergency-mitigation-0  (Claims SOP - Water Damage Claims > Emergency Mitigation)
+  0.068  claims-water-damage-sop#moisture-documentation-0  (Claims SOP - Water Damage Claims > Moisture Documentation)
+  0.034  claims-fnol-sop#worked-example-intake-note-0  (Claims SOP - First Notice of Loss (FNOL) > Worked Example - Intake Note)
+  0.000  claims-fnol-sop#purpose-0  (Claims SOP - First Notice of Loss (FNOL) > Purpose)
+
+$ python -m rag_pipeline.cli ask "What is the interest rate on a 30 year mortgage?" 
+I don't know based on the indexed documents.
+
+refused=True max_similarity=0.065
+  0.049  ho-property-coverages#coverage-c-personal-property-0  (Section I - Property Coverages > Coverage C - Personal Property)
+  0.048  ho-definitions#you-and-your-0  (Homeowners Policy Definitions > You and Your)
+  0.042  ho-definitions#insured-location-0  (Homeowners Policy Definitions > Insured Location)
+  0.034  ho-property-coverages#coverage-d-loss-of-use-0  (Section I - Property Coverages > Coverage D - Loss of Use)
+  0.000  claims-fnol-sop#purpose-0  (Claims SOP - First Notice of Loss (FNOL) > Purpose)
+

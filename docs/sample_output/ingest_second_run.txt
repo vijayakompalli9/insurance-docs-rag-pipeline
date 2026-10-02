@@ -1,0 +1,19 @@
+ts=2026-10-02 13:16:47,353 level=INFO logger=rag_pipeline.documents event=corpus_loaded documents=10 corpus_dir=corpus
+ts=2026-10-02 13:16:47,354 level=INFO logger=rag_pipeline.ingest event=pii_redacted doc_id=claims-fnol-sop total=6 email=1 person=2 phone=2 ssn=1
+ts=2026-10-02 13:16:47,355 level=INFO logger=rag_pipeline.ingest event=pii_redacted doc_id=fraud-red-flags total=6 email=2 person=2 phone=1 ssn=1
+ts=2026-10-02 13:16:47,364 level=INFO logger=rag_pipeline.vector_store event=index_saved index_dir=data/index chunks=51
+ts=2026-10-02 13:16:47,364 level=INFO logger=rag_pipeline.ingest event=ingest_complete documents=10 chunks_total=51 embedded=0 reused=51 removed=0 full_rebuild=False
+{
+  "documents": 10,
+  "chunks_total": 51,
+  "embedded": 0,
+  "reused": 51,
+  "removed": 0,
+  "full_rebuild": false,
+  "pii_redacted": {
+    "EMAIL": 3,
+    "SSN": 2,
+    "PHONE": 3,
+    "PERSON": 4
+  }
+}
