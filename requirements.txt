@@ -1,0 +1,11 @@
+numpy==2.4.6
+scikit-learn==1.9.1
+scipy==1.17.1
+PyYAML==6.0.3
+pydantic==2.13.5
+fastapi==0.142.2
+starlette==1.7.0
+uvicorn==0.54.0
+# Optional cloud adapters (not installed by default; imported lazily):
+#   boto3   -> AWS Bedrock (Titan embeddings, Claude via Converse API)
+#   openai  -> Azure OpenAI (embeddings + chat completions)

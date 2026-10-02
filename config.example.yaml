@@ -1,0 +1,30 @@
+# Copy to config.yaml and point RAG_CONFIG at it (or pass --config).
+# Secrets (API keys) are NEVER read from this file - use environment variables.
+corpus_dir: corpus
+index_dir: data/index
+embedding_provider: local        # local | bedrock | azure_openai
+generator_provider: extractive   # extractive | bedrock | azure_openai
+local_embedding_dim: 8192
+top_k: 5
+rerank: true
+refusal_threshold: 0.12          # refuse when best cosine similarity is below this
+max_answer_sentences: 3
+log_level: INFO
+chunking:
+  max_words: 120
+  overlap_words: 25
+
+# Only used when a provider above is set to "bedrock".
+bedrock:
+  region: us-east-1
+  embedding_model_id: amazon.titan-embed-text-v2:0
+  embedding_dimensions: 1024
+  generation_model_id: "<bedrock-claude-model-or-inference-profile-id>"
+
+# Only used when a provider above is set to "azure_openai".
+# AZURE_OPENAI_API_KEY must be set in the environment.
+azure_openai:
+  endpoint: "https://<your-resource-name>.openai.azure.com/"
+  api_version: "2024-06-01"
+  embedding_deployment: "<your-embedding-deployment>"
+  chat_deployment: "<your-chat-deployment>"
