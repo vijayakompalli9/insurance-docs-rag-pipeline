@@ -1,0 +1,54 @@
+# Golden questions for the Northwind Mutual (fictional) corpus.
+# expected_doc: the doc_id that must be retrieved; null means out of scope (expect refusal).
+questions:
+  - id: q01
+    question: What is the Coverage B limit for detached structures like a fence or shed?
+    expected_doc: ho-property-coverages
+  - id: q02
+    question: How much does the policy pay for theft of jewelry and watches?
+    expected_doc: ho-property-coverages
+  - id: q03
+    question: Is sewer or drain backup covered, or is it excluded with flood?
+    expected_doc: ho-perils-exclusions
+  - id: q04
+    question: Does the policy cover earthquake or sinkhole damage?
+    expected_doc: ho-perils-exclusions
+  - id: q05
+    question: When is a dwelling loss settled at replacement cost versus actual cash value under the 80 percent rule?
+    expected_doc: ho-conditions
+  - id: q06
+    question: How does the appraisal process work when we disagree on the amount of loss?
+    expected_doc: ho-conditions
+  - id: q07
+    question: What is the per person limit for medical payments to others?
+    expected_doc: ho-liability
+  - id: q08
+    question: Are roofs with asphalt shingles older than 20 years eligible for new business?
+    expected_doc: uw-homeowners-guideline
+  - id: q09
+    question: What windstorm deductible is required for risks near tidal water?
+    expected_doc: uw-homeowners-guideline
+  - id: q10
+    question: What Coverage A limit can a senior underwriter bind without manager approval?
+    expected_doc: uw-referral-authority
+  - id: q11
+    question: How quickly must the adjuster make first contact with the insured after FNOL?
+    expected_doc: claims-fnol-sop
+  - id: q12
+    question: When do initial reserves need supervisor approval?
+    expected_doc: claims-fnol-sop
+  - id: q13
+    question: What mitigation invoice amount can a vendor bill without adjuster sign-off for water damage?
+    expected_doc: claims-water-damage-sop
+  - id: q14
+    question: How many red flags should trigger a referral to the Special Investigations Unit?
+    expected_doc: fraud-red-flags
+  - id: q15
+    question: How is actual cash value defined, including depreciation?
+    expected_doc: ho-definitions
+  - id: q16
+    question: What is the best recipe for sourdough bread starter?
+    expected_doc: null
+  - id: q17
+    question: Who won the football world cup in 1998?
+    expected_doc: null
