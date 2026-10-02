@@ -1,0 +1,63 @@
+name: Run demo
+
+# "Run workflow" on the Actions tab: ingest the synthetic corpus, answer your
+# question with citations, and run the evaluation harness. Results appear in
+# the run summary. Runs fully offline - no API keys, no data leaves the runner.
+on:
+  workflow_dispatch:
+    inputs:
+      question:
+        description: "Ask the policy / underwriting / claims corpus a question"
+        type: string
+        default: "What is the deductible for wind and hail claims?"
+
+permissions:
+  contents: read
+
+jobs:
+  demo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+      - name: Install
+        run: |
+          pip install -r requirements.txt
+          pip install -e . --no-deps
+      - name: Ingest corpus (PII redaction, chunking, indexing)
+        run: |
+          mkdir -p demo-out
+          python -m rag_pipeline.cli ingest 2>&1 | tee demo-out/ingest.log
+      - name: Answer the question
+        env:
+          QUESTION: ${{ inputs.question }}
+        run: python -m rag_pipeline.cli ask "$QUESTION" 2>/dev/null | tee demo-out/answer.txt
+      - name: Out-of-scope question (should be refused)
+        run: python -m rag_pipeline.cli ask "What is the capital of France?" 2>/dev/null | tee demo-out/refusal.txt
+      - name: Evaluation harness
+        run: python -m rag_pipeline.cli eval --out demo-out 2>&1 | tail -n 5
+      - name: Publish results to the run summary
+        env:
+          QUESTION: ${{ inputs.question }}
+        run: |
+          {
+            echo "## Insurance docs RAG pipeline - demo run"
+            echo
+            echo "**Question:** $QUESTION"
+            echo '```'
+            cat demo-out/answer.txt
+            echo '```'
+            echo "**Out-of-scope check:** What is the capital of France?"
+            echo '```'
+            cat demo-out/refusal.txt
+            echo '```'
+            echo
+            cat demo-out/eval_report.md
+          } >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rag-demo-output
+          path: demo-out/
