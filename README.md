@@ -1,8 +1,22 @@
 # Insurance Docs RAG Pipeline
 
+[![CI](https://github.com/vijayakompalli9/insurance-docs-rag-pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/vijayakompalli9/insurance-docs-rag-pipeline/actions/workflows/ci.yml) [![Run demo](https://github.com/vijayakompalli9/insurance-docs-rag-pipeline/actions/workflows/demo.yml/badge.svg)](https://github.com/vijayakompalli9/insurance-docs-rag-pipeline/actions/workflows/demo.yml) ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
+
 > **Portfolio project.** Independently built demonstration using synthetic data. It is not code from, or affiliated with, any current or former employer or client. Developed with AI-assisted tooling and reviewed by the author.
 
+![insurance-docs-rag-pipeline overview](https://vijayakompalli9.github.io/images/insurance-docs-rag-pipeline.png)
+
 Underwriters and claims analysts at an insurer spend a lot of time searching long policy wordings, underwriting guidelines and claims procedures to answer narrow questions: "Is sewer backup excluded?", "What Coverage A limit can a senior underwriter bind?", "How fast must the adjuster call the insured?". This repo builds a retrieval-augmented generation (RAG) pipeline over a small fictional corpus for **Northwind Mutual Insurance (fictional)**. It is built the way a data pipeline should be. Documents are ingested, normalized and PII-redacted before anything is embedded. Chunks carry stable ids and content hashes, so re-indexing is incremental. Answers cite the exact chunk they came from, and the system refuses when retrieval confidence is low. An evaluation harness measures answer quality instead of assuming it.
+
+## Try it without installing anything
+
+1. Open the [**Run demo** workflow](https://github.com/vijayakompalli9/insurance-docs-rag-pipeline/actions/workflows/demo.yml).
+2. Click **Run workflow** (you need to be signed in to GitHub), then open the run when it finishes, in about 2–4 minutes.
+3. Read the results on the run's **Summary** page, or download the `*-demo-output` artifact.
+
+The demo asks for your question, ingests the corpus with PII redaction, answers with chunk-level citations, checks that an out-of-scope question is refused, and posts the evaluation report (hit@k, MRR, citation accuracy) to the run summary. No API keys are needed and no data leaves the runner.
+
+Tested with Python 3.11 / 3.13 · offline by default. Every push to `main` also runs the [CI workflow](https://github.com/vijayakompalli9/insurance-docs-rag-pipeline/actions/workflows/ci.yml): lint, the full test suite and a smoke run.
 
 ## What this demonstrates
 

@@ -11,3 +11,4 @@ dist/
 data/
 index/
 *.npy
+demo-out/
